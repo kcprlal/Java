@@ -5,22 +5,22 @@ import java.io.IOException;
 
 public class LineCounterPane {
     public static void main(String[] args) {
-        String nazwaPliku = JOptionPane.showInputDialog(null, "Podaj nazwę pliku:", "LineCounterPane", JOptionPane.QUESTION_MESSAGE);
+        String fileName = JOptionPane.showInputDialog(null, "Podaj nazwę pliku:", "LineCounterPane", JOptionPane.QUESTION_MESSAGE);
 
-        if (nazwaPliku == null || nazwaPliku.trim().isEmpty()) {
+        if (fileName == null || fileName.trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nie podano nazwy pliku.", "Błąd", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        int liczbaWierszy = 0;
+        int lineCount = 0;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(nazwaPliku))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             while (reader.readLine() != null) {
-                liczbaWierszy++;
+                lineCount++;
             }
-            JOptionPane.showMessageDialog(null, "Liczba wierszy w pliku " + nazwaPliku + " wynosi: " + liczbaWierszy, "Wynik", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Liczba wierszy w pliku " + fileName + " wynosi: " + lineCount, "Wynik", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Wystąpił błąd podczas odczytu pliku: " + nazwaPliku + "\nSzczegóły: " + e.getMessage(), "Błąd", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Wystąpił błąd podczas odczytu pliku: " + fileName + "\nSzczegóły: " + e.getMessage(), "Błąd", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
